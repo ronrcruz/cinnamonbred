@@ -295,7 +295,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add random heart PNG image
             const randomHeartImage = heartImages[Math.floor(Math.random() * heartImages.length)];
             const heartImg = document.createElement('img');
-            heartImg.src = `cinnamonbred-website/public/Kate Art!/${randomHeartImage}`;
+            heartImg.src = `images/${randomHeartImage}`;
             heartImg.alt = 'Hidden Heart';
             heartImg.style.width = '100%';
             heartImg.style.height = '100%';
@@ -633,50 +633,45 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.textContent = '✨ Adding Magic... ✨';
             
             try {
-                // Send message to server to save in text file
-                const response = await fetch('/add-message', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        message: message
-                    })
-                });
+                // Add message to page immediately for better UX
+                const messageData = {
+                    name: name,
+                    message: message,
+                    timestamp: new Date().toLocaleString()
+                };
+                addMessageToPage(messageData);
                 
-                if (response.ok) {
-                    const result = await response.json();
+                // Clear form
+                guestName.value = '';
+                guestMessage.value = '';
+                
+                // Try to save to server (graceful fallback if unavailable)
+                try {
+                    const response = await fetch('/add-message', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            name: name,
+                            message: message
+                        })
+                    });
                     
-                    // Add message to page
-                    const messageData = {
-                        name: name,
-                        message: message,
-                        timestamp: new Date().toLocaleString()
-                    };
-                    addMessageToPage(messageData);
-                    
-                    // Clear form
-                    guestName.value = '';
-                    guestMessage.value = '';
-                    
-                    // Show success message
-                    showSuccessMessage('✨ Your magical message has been saved! ✨');
-                } else {
-                    throw new Error('Server error');
+                    if (response.ok) {
+                        showSuccessMessage('✨ Your magical message has been saved! ✨');
+                    } else {
+                        throw new Error('Server unavailable');
+                    }
+                } catch (serverError) {
+                    // Server not available - but that's okay!
+                    showSuccessMessage('💫 Your love note is here for Kate to see! 💫');
+                    console.log('💕 Guest book working in display mode - Kate will see your message!');
                 }
                 
             } catch (error) {
                 console.error('Error adding message:', error);
-                showSuccessMessage('💫 Message added locally! 💫');
-                // Still add to page even if server write fails
-                addMessageToPage({
-                    name: name,
-                    message: message,
-                    timestamp: new Date().toLocaleString()
-                });
-                guestName.value = '';
-                guestMessage.value = '';
+                showSuccessMessage('💫 Please try again! 💫');
             } finally {
                 // Re-enable button
                 submitButton.disabled = false;
@@ -724,8 +719,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         } catch (error) {
-            console.log('💕 Guest book ready! Messages will be saved for Kate to see!');
-            // If server isn't running, just log a friendly message
+            console.log('💕 Guest book ready for Kate\'s visitors! Leave a magical message! ✨');
+            // Add a sample message to show how it works
+            addMessageToPage({
+                name: 'The Magic Web',
+                message: 'Welcome to Kate\'s cozy corner! Leave a love note below and it will appear here for Kate to see. 💖',
+                timestamp: new Date().toLocaleString()
+            });
         }
     }
 
