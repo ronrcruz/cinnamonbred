@@ -1,0 +1,24 @@
+<svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .brush-handle { fill: #8B5A3C; }
+      .brush-ferrule { fill: #6B8E70; }
+      .brush-bristles { fill: #FAF7F3; }
+    </style>
+  </defs>
+  
+  <!-- Handle -->
+  <rect x="2" y="12" width="3" height="6" rx="1.5" class="brush-handle"/>
+  
+  <!-- Ferrule (metal part) -->
+  <rect x="2.5" y="8" width="2" height="4" class="brush-ferrule"/>
+  
+  <!-- Bristles -->
+  <path d="M3.5 8 L3.5 3 Q3.5 2 4.5 2 Q5.5 2 5.5 3 L5.5 8 Z" class="brush-bristles"/>
+  
+  <!-- Paint drop -->
+  <circle cx="8" cy="4" r="1.5" fill="#D4A574" opacity="0.8"/>
+  
+  <!-- Small sparkle -->
+  <circle cx="10" cy="6" r="0.5" fill="#FAF7F3" opacity="0.6"/>
+</svg> 

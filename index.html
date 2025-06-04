@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cinnamonbred's Cozy Corner</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Imports (Comfortaa, Crimson Text, Source Sans Pro, Dancing Script) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="loader-art">🎨</div>
+            <p>Welcome to the cozy cottage...</p>
+            <div class="loader-dots">
+                <span>.</span><span>.</span><span>.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header id="main-header">
+        <nav id="navbar">
+            <div class="logo-container">
+                <img src="cinnamonbred-website/public/Kate Art!/CINNA.png" alt="Cinnamonbred" class="logo-image">
+                <img src="cinnamonbred-website/public/Kate Art!/bred.png" alt="Bred Icon" class="logo-icon">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#artistic-worlds" class="nav-link">Character Art</a></li>
+                <li><a href="#recent-magic" class="nav-link">Gallery</a></li>
+                <li><a href="#merch-corner" class="nav-link">Merch</a></li>
+                <li><a href="#guest-book" class="nav-link">💝 Guest Book</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section - "Welcome to the Cottage" -->
+    <section id="hero" class="full-viewport-section">
+        <div class="section-container hero-layout">
+            <div class="hero-content">
+                <h1>Welcome to Cinnamonbred's Cozy Corner</h1>
+                <h2>Where cute characters and sweet doodles come to life</h2>
+                <p>Step into my little woodland studio where I bring beloved characters to life and sketch the sweetest animal friends. Whether it's your favorite game character or an adorable creature with a heartwarming message, every piece is crafted with love and a touch of magic.</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">
+                        <img src="placeholder_paintbrush.svg" alt="Paintbrush" class="btn-icon">
+                        Explore My Art
+                    </button>
+                    <button class="btn btn-secondary">Shop Cozy Merch</button>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <!-- Kate's beautiful artwork as hero illustration -->
+                <img src="cinnamonbred-website/public/Kate Art!/IMG_2775.jpg" alt="Cinnamonbred's magical artwork" style="width:100%; max-width: 400px; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2);">
+                <!-- Animated elements (e.g., tea steam) will be added via CSS/JS -->
+            </div>
+        </div>
+        <!-- Decorative elements -->
+        <div class="floating-leaves"></div>
+        <div class="corner-branches"></div>
+    </section>
+
+    <!-- Section 2 - "My Artistic Worlds" -->
+    <section id="artistic-worlds" class="content-section">
+        <div class="section-container">
+            <h2>My Artistic Worlds</h2>
+            <div class="art-cards-container">
+                <div class="art-card">
+                    <div class="art-card-visual">
+                        <div class="visual-grid">
+                            <div class="mini-art">🎮</div>
+                            <div class="mini-art">⚔️</div>
+                            <div class="mini-art">🏰</div>
+                            <div class="mini-art">🌟</div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 12px; color: var(--mossy-green); font-style: italic;">Character Art Preview</p>
+                    </div>
+                    <h3>Beloved Characters</h3>
+                    <p>Bringing your favorite heroes and companions to life with love and detail.</p>
+                    <button class="btn btn-tertiary">See Character Gallery</button>
+                </div>
+                <div class="art-card">
+                    <div class="art-card-visual">
+                        <div class="doodle-grid">
+                            <div class="mini-doodle">🐰</div>
+                            <div class="mini-doodle">🌸</div>
+                            <div class="mini-doodle">🍄</div>
+                            <div class="mini-doodle">✨</div>
+                            <div class="mini-doodle">🌿</div>
+                            <div class="mini-doodle">💕</div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 12px; color: var(--mossy-green); font-style: italic;">"Stay magical" - "You're loved"</p>
+                    </div>
+                    <h3>Sweet Creatures</h3>
+                    <p>Wholesome animal friends with messages straight from the heart.</p>
+                    <button class="btn btn-tertiary">View Doodle Collection <span class="heart-icon">❤️</span></button>
+                </div>
+                <div class="art-card" id="portfolio-card">
+                    <div class="art-card-visual">
+                        <div class="portfolio-book">
+                            <div class="book-cover">📚</div>
+                            <div class="book-pages">
+                                <div class="page"></div>
+                                <div class="page"></div>
+                                <div class="page"></div>
+                            </div>
+                        </div>
+                        <p style="margin-top: 10px; font-size: 12px; color: var(--mossy-green); font-style: italic;">Portfolio Collection</p>
+                    </div>
+                    <h3>Complete Portfolio</h3>
+                    <p>Dive deep into my complete artistic journey and commissioned works.</p>
+                    <button class="btn btn-tertiary">Open Portfolio</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3 - "Recent Magic" (Latest Art Showcase) -->
+    <section id="recent-magic" class="content-section">
+        <div class="section-container">
+            <h2>Latest from the Studio</h2>
+            
+            <!-- Featured Masterpieces -->
+            <div class="featured-masterpieces">
+                <h3>✨ Featured Masterpieces ✨</h3>
+                <p>Kate's newest and most beloved creations</p>
+                <div class="masterpiece-gallery">
+                    <div class="art-piece masterpiece featured-work">
+                        <div class="masterpiece-badge">✨ New Masterpiece</div>
+                        <img src="cinnamonbred-website/public/Kate Art!/Untitled_Artwork.jpg" alt="Untitled Masterpiece 1">
+                        <div class="art-caption">
+                            Untitled Masterpiece <span class="creation-date">Latest Creation - A profound expression of artistic vision.</span>
+                        </div>
+                        <div class="masterpiece-glow"></div>
+                    </div>
+                    <div class="art-piece masterpiece featured-work">
+                        <div class="masterpiece-badge">✨ Artist's Choice</div>
+                        <img src="cinnamonbred-website/public/Kate Art!/Untitled_Artwork 2.jpg" alt="Untitled Masterpiece 2">
+                        <div class="art-caption">
+                            Untitled Masterpiece II <span class="creation-date">Latest Creation - Pure artistic brilliance captured on canvas.</span>
+                        </div>
+                        <div class="masterpiece-glow"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gallery Collection -->
+            <h3 style="margin-top: 60px; margin-bottom: 30px; text-align: center; color: var(--deep-forest); font-family: var(--font-accent);">Gallery Collection</h3>
+            <div class="art-masonry-grid">
+                <!-- Kate's beautiful artwork collection -->
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/20200820_191336.jpg" alt="Magical Character Art">
+                    <div class="art-caption">
+                        Fantasy Character Portrait <span class="creation-date">Created: Aug 2020 - Inspired by magical adventures.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/20201030_222733_587.jpg" alt="Halloween Themed Art">
+                    <div class="art-caption">
+                        Autumn Spirits <span class="creation-date">Created: Oct 2020 - Capturing the magic of Halloween.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/IMG-20210605-WA0010.jpg" alt="Sweet Character Design">
+                    <div class="art-caption">
+                        Cozy Character Study <span class="creation-date">Created: Jun 2021 - A warm and friendly companion.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/IMG-20210921-WA0010.jpg" alt="Whimsical Art Piece">
+                    <div class="art-caption">
+                        Dreamy Illustration <span class="creation-date">Created: Sep 2021 - Born from afternoon daydreams.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/IMG-20220215-WA0000.jpg" alt="Valentine's Art">
+                    <div class="art-caption">
+                        Love & Magic <span class="creation-date">Created: Feb 2022 - Spreading warmth and joy.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/IMG-20220201-WA0000.jpg" alt="Winter Character">
+                    <div class="art-caption">
+                        Winter Wonder <span class="creation-date">Created: Feb 2022 - Embracing the cold season's beauty.</span>
+                    </div>
+                </div>
+                <div class="art-piece">
+                    <img src="cinnamonbred-website/public/Kate Art!/IMG-20220225-WA0000.jpg" alt="Spring Awakening">
+                    <div class="art-caption">
+                        Spring's First Bloom <span class="creation-date">Created: Feb 2022 - Celebrating new beginnings.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4 - "Cozy Merch Corner" -->
+    <section id="merch-corner" class="content-section">
+        <div class="section-container">
+            <h2>Cozy Merch Corner</h2>
+            <div class="merch-categories-grid">
+                <div class="merch-card">
+                    <span class="new-badge">New!</span>
+                    <h4>Prints</h4>
+                    <div class="product-preview-placeholder">
+                        <div class="print-frame">🖼️</div>
+                        <div class="product-shine"></div>
+                    </div>
+                    <p>High-quality prints of your favorite Cinnamonbred art.</p>
+                    <span class="price-tag">$15+</span>
+                </div>
+                <div class="merch-card">
+                    <span class="new-badge popular">Popular</span>
+                    <h4>Stickers</h4>
+                    <div class="product-preview-placeholder">
+                        <div class="sticker-sheet">
+                            <span class="sticker">🌟</span>
+                            <span class="sticker">🐾</span>
+                            <span class="sticker">💝</span>
+                            <span class="sticker">🌸</span>
+                        </div>
+                        <div class="product-shine"></div>
+                    </div>
+                    <p>Adorable stickers to decorate your world.</p>
+                    <span class="price-tag">$5+</span>
+                </div>
+                <div class="merch-card">
+                    <h4>Apparel</h4>
+                    <div class="product-preview-placeholder">
+                        <div class="tshirt">👕</div>
+                        <div class="design-on-shirt">✨</div>
+                        <div class="product-shine"></div>
+                    </div>
+                    <p>Wearable art with cozy designs.</p>
+                    <span class="price-tag">$25+</span>
+                </div>
+                <div class="merch-card">
+                    <h4>Plushies</h4>
+                    <div class="product-preview-placeholder">
+                        <div class="plushie">🧸</div>
+                        <div class="sparkle-effect">✨</div>
+                        <div class="product-shine"></div>
+                    </div>
+                    <p>Cuddle up with a soft Cinnamonbred friend.</p>
+                    <span class="price-tag">$30+</span>
+                </div>
+            </div>
+            <div class="featured-merch-carousel">
+                <h3>✨ Spotlight Treasures ✨</h3>
+                <div class="carousel-container">
+                    <div class="carousel-item featured">
+                        <div class="featured-product">
+                            <div class="product-image">🖼️</div>
+                            <h4>Limited Edition Print Collection</h4>
+                            <p>Hand-selected artwork prints on premium paper</p>
+                            <span class="featured-price">$25</span>
+                            <div class="limited-badge">Only 10 left!</div>
+                        </div>
+                    </div>
+                    <div class="carousel-item featured">
+                        <div class="featured-product">
+                            <div class="product-image">📦</div>
+                            <h4>Cozy Art Bundle</h4>
+                            <p>Stickers + Print + Bookmark combo pack</p>
+                            <span class="featured-price">$20</span>
+                            <div class="save-badge">Save $10!</div>
+                        </div>
+                    </div>
+                    <div class="carousel-item featured">
+                        <div class="featured-product">
+                            <div class="product-image">🧸</div>
+                            <h4>Custom Character Plushie</h4>
+                            <p>Commission your own adorable character friend</p>
+                            <span class="featured-price">$45</span>
+                            <div class="custom-badge">Made to Order</div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; color: var(--mossy-green); font-style: italic;">✨ Each piece is crafted with love and a sprinkle of magic! ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <div class="section-container">
+            <h2>🌸 Let's Create Magic Together 🌸</h2>
+            <p>Have a question, commission idea, or just want to say hello? I'd love to hear from you!</p>
+            
+            <div class="contact-options">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h4>Email</h4>
+                    <p>cinnamonbred.art@gmail.com</p>
+                    <small>I usually respond within 24 hours!</small>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">🎨</div>
+                    <h4>Commissions</h4>
+                    <p>Custom characters, portraits, and more</p>
+                    <small>Starting at $30 • 1-2 week turnaround</small>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">💝</div>
+                    <h4>Collaborations</h4>
+                    <p>Let's create something beautiful together</p>
+                    <small>Always open to creative partnerships!</small>
+                </div>
+            </div>
+            
+            <div class="contact-note">
+                <p>✨ <em>Please allow extra time during busy seasons. All artwork is created with love, patience, and a generous sprinkle of magic!</em> ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guest Book Section -->
+    <section id="guest-book" class="content-section">
+        <div class="section-container">
+            <h2>💝 Messages from the Heart 💝</h2>
+            <p>Leave a magical message for our talented artist!</p>
+            
+            <div class="guest-book-form">
+                <input type="text" id="guest-name" placeholder="Your name (optional)" maxlength="50">
+                <textarea id="guest-message" placeholder="Share your thoughts about Kate's beautiful art..." maxlength="200" rows="3"></textarea>
+                <button id="submit-message" class="btn btn-primary">✨ Leave Magic ✨</button>
+            </div>
+            
+            <div class="messages-container">
+                <div class="guest-message">
+                    <div class="message-content">"Your art brings so much joy and warmth to the world! Keep creating magic! 🌟"</div>
+                    <div class="message-author">- Art Lover</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="hidden-elements-container" style="position: absolute; opacity: 0; pointer-events: none; width:0; height:0; overflow:hidden;">
+            <!-- Hidden romantic easter eggs -->
+                <div class="hidden-heart" data-message="You will always be my baby bear :D" data-id="1"></div>
+    <div class="hidden-heart" data-message="No one could touch my heart like you do" data-id="2"></div>
+    <div class="hidden-heart" data-message="You have made me happier than I ever thought could be possible" data-id="3"></div>
+    <div class="hidden-heart" data-message="You have this light in you, it is so bright and beautiful. It would break my heart to pieces to see it dulled." data-id="4"></div>
+    <div class="hidden-heart" data-message="In this world, we find our peace. I found mine with you, I hope I can give you yours baby girl." data-id="5"></div>
+            <!-- Original mushroom easter eggs -->
+            <div class="hidden-mushroom" data-id="1"></div>
+            <div class="hidden-mushroom" data-id="2"></div>
+        </div>
+        
+        <div class="footer-content">
+            <p>&copy; 2024 Cinnamonbred. All magical rights reserved.</p>
+            
+            <!-- Cozy Ambient Sound Control -->
+            <div class="sound-controls">
+                <button id="ambient-toggle">🏠 Cozy Ambience</button>
+            </div>
+            
+            <!-- Cozy Cabin Audio -->
+            <audio id="ambient-audio" loop preload="none">
+                <source src="cinnamonbred-website/Cozy Cabin Ambience  Rain and Crackling Fireplace Sounds - Deep Sleep.mp3" type="audio/mpeg">
+                Your browser doesn't support audio playback.
+            </audio>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal for Artwork -->
+    <div id="artwork-lightbox" class="lightbox-overlay">
+        <div class="lightbox-content">
+            <button class="lightbox-close">&times;</button>
+            <img id="lightbox-image" src="" alt="">
+            <div class="lightbox-caption">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-description"></p>
+            </div>
+            <div class="lightbox-nav">
+                <button class="lightbox-prev">‹</button>
+                <button class="lightbox-next">›</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 

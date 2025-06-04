@@ -1,0 +1,2555 @@
+/* CINNAMONBRED LANDING PAGE - STYLE.CSS */
+
+/* --- OVERALL LAYOUT & VISUAL CONCEPT --- */
+:root {
+    /* Primary Greens - Darker & Cozier */
+    --deep-forest: #1F3A2B;
+    --mossy-green: #5A7A5E;
+    --sage-green: #8FA892;
+    --pale-green: #B8C5BA;
+
+    /* Supporting Colors */
+    --warm-cream: #FAF7F3;
+    --rich-brown: #8B5A3C;
+    --golden-accent: #D4A574;
+    --charcoal-green: #3A4A3A;
+
+    /* Accent Colors */
+    --soft-coral: #F2B5A7;
+    --lavender-gray: #B8A9C9;
+    --cream-white: #FFF8F0;
+
+    /* Typography */
+    --font-headlines: 'Crimson Text', serif;
+    --font-body: 'Source Sans Pro', sans-serif;
+    --font-accent: 'Dancing Script', cursive;
+    --font-navigation: 'Comfortaa', sans-serif;
+
+    /* Sizes */
+    --h1-desktop: 48px;
+    --h1-mobile: 32px;
+    --h2-desktop: 36px;
+    --h2-mobile: 24px;
+    --h3-desktop: 24px;
+    --h3-mobile: 20px;
+    --body-text-desktop: 16px;
+    --body-text-mobile: 14px;
+    --caption-desktop: 14px;
+    --caption-mobile: 12px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--charcoal-green);
+    background-color: var(--warm-cream);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    line-height: 1.6;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px; /* Generous breathing room */
+}
+
+/* Organic section dividers - more pronounced curves for cozy cottage feel */
+.content-section {
+    position: relative;
+}
+
+.content-section:not(#artistic-worlds)::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: inherit;
+    border-radius: 0 0 50% 50% / 0 0 30px 30px;
+    z-index: 1;
+}
+
+/* Enhanced curved transitions between sections */
+#artistic-worlds::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #F1F6F1;
+    border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+    z-index: 1;
+}
+
+#recent-magic::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: var(--sage-green);
+    border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+    z-index: 1;
+}
+
+.full-viewport-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- ENHANCED LOADER --- */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--pale-green) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: var(--font-accent);
+    /* JS will hide this when page is loaded */
+}
+
+.loader-content {
+    text-align: center;
+    animation: loader-float 3s ease-in-out infinite;
+}
+
+.loader-art {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: loader-spin 4s linear infinite;
+}
+
+.loader-content p {
+    font-size: 24px;
+    color: var(--deep-forest);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.loader-dots {
+    display: inline-block;
+}
+
+.loader-dots span {
+    font-size: 24px;
+    color: var(--mossy-green);
+    animation: loader-bounce 1.5s infinite;
+    display: inline-block;
+}
+
+.loader-dots span:nth-child(1) { animation-delay: 0s; }
+.loader-dots span:nth-child(2) { animation-delay: 0.2s; }
+.loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes loader-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes loader-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes loader-bounce {
+    0%, 60%, 100% { transform: translateY(0px); opacity: 0.4; }
+    30% { transform: translateY(-15px); opacity: 1; }
+}
+
+/* --- HEADER & NAVIGATION --- */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(90, 122, 94, 0.90); /* Darker semi-transparent mossy green */
+    backdrop-filter: blur(12px); /* Slightly more blur for coziness */
+    -webkit-backdrop-filter: blur(12px); /* For Safari */
+    padding: 15px 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(-100%); /* Initially off-screen */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+}
+
+#main-header.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: var(--font-headlines); /* Whimsical serif - using Crimson Text as placeholder */
+    font-size: 28px;
+    color: var(--cream-white);
+    margin-right: 10px;
+}
+
+.logo-image {
+    height: 35px; /* Adjust height to match the navbar */
+    width: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.logo-image:hover {
+    transform: scale(1.1);
+}
+
+.logo-icon {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: rotate(360deg);
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-menu li {
+    margin-left: 30px;
+}
+
+.nav-menu .nav-link {
+    font-family: var(--font-navigation);
+    text-decoration: none;
+    color: var(--cream-white);
+    font-size: 16px;
+    padding-bottom: 5px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-menu .nav-link:hover {
+    color: var(--golden-accent);
+    /* Sparkle animation can be added with ::after pseudo-elements and JS/CSS animation */
+}
+
+.nav-menu .nav-link.active {
+    border-bottom: 2px solid var(--golden-accent); /* Squiggly line - simple solid for now, can be SVG */
+    /* For actual squiggly line: border-image: url('squiggly-line.svg') 30 stretch; */
+}
+
+.mobile-menu-icon {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+.mobile-menu-icon span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--cream-white); /* Branches color */
+    margin: 5px 0;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Mobile menu icon active state (transform to X) */
+.mobile-menu-icon.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.mobile-menu-icon.active span:nth-child(2) {
+    opacity: 0;
+}
+.mobile-menu-icon.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- TYPOGRAPHY SYSTEM (applied within sections) --- */
+h1 {
+    font-family: var(--font-headlines);
+    font-size: var(--h1-desktop);
+    color: var(--deep-forest);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-family: var(--font-headlines);
+    font-size: var(--h2-desktop);
+    color: var(--deep-forest);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center; /* Most section headers seem to be centered */
+    padding-bottom: 20px; /* Space for potential decorative underline or elements */
+}
+
+section#hero h2 { /* Subheading in Hero */
+    font-family: var(--font-accent); /* Handwritten-style script */
+    font-size: 24px; /* Desktop size from spec */
+    color: var(--rich-brown);
+    font-weight: normal;
+    text-align: left; /* Hero subheading is left-aligned */
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-family: var(--font-headlines); /* Playful serif for card titles */
+    font-size: var(--h3-desktop);
+    color: var(--deep-forest);
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: var(--body-text-desktop);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: var(--charcoal-green);
+}
+
+/* --- HERO SECTION - "WELCOME TO THE COTTAGE" --- */
+#hero {
+    background: linear-gradient(to bottom, var(--warm-cream), var(--pale-green));
+    position: relative; /* For positioning decorative elements */
+    overflow: hidden; /* To contain floating leaves if they go too wild */
+}
+
+.hero-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 80px); /* Adjust 80px if header height changes */
+    padding-top: 80px; /* Account for fixed header */
+}
+
+.hero-content {
+    flex: 0 0 58%; /* 60% content, allowing for gap */
+    padding-right: 2%; /* Small gap */
+    position: relative;
+    z-index: 10; /* Above floating leaves */
+}
+
+.hero-content h1 {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1); /* Subtle text shadow for warmth */
+}
+
+/* Hero subheading style is already defined in typography section: section#hero h2 */
+
+.hero-content p {
+    margin-bottom: 30px;
+}
+
+.cta-buttons .btn {
+    padding: 12px 25px;
+    border-radius: 25px; /* Cozy rounded corners */
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex; /* For icon alignment */
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-right: 15px;
+    border: none;
+}
+
+.cta-buttons .btn-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cta-buttons .btn-primary {
+    background: linear-gradient(135deg, var(--mossy-green) 0%, #6B8E70 100%);
+    color: var(--cream-white);
+    box-shadow: 
+        0 6px 12px rgba(0,0,0,0.15),
+        inset 0 0 0 1px rgba(255,255,255,0.1),
+        inset 0 0 20px rgba(0,0,0,0.05);
+    border: 2px solid rgba(139, 90, 60, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-buttons .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 1px,
+            rgba(255,255,255,0.03) 1px,
+            rgba(255,255,255,0.03) 2px
+        );
+    pointer-events: none;
+}
+
+.cta-buttons .btn-primary:hover {
+    background: linear-gradient(135deg, #6B8E70 0%, var(--deep-forest) 100%);
+    transform: translateY(-4px);
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.2),
+        inset 0 0 0 1px rgba(255,255,255,0.15),
+        inset 0 0 25px rgba(0,0,0,0.1);
+}
+
+.cta-buttons .btn-primary:hover .btn-icon {
+    transform: rotate(-15deg) scale(1.1); /* Paintbrush wiggles */
+}
+
+.cta-buttons .btn-secondary {
+    background-color: transparent;
+    color: var(--golden-accent);
+    border: 2px dashed var(--golden-accent); /* Hand-stitching */
+}
+
+.cta-buttons .btn-secondary:hover {
+    background-color: var(--golden-accent);
+    color: var(--warm-cream);
+}
+
+.hero-illustration {
+    flex: 0 0 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* For animated elements */
+    z-index: 10; /* Above floating leaves */
+}
+
+/* Placeholder for hero illustration image - actual image will determine final look */
+.hero-illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px; /* Soften edges if it's a direct image */
+}
+
+/* Decorative Elements for Hero */
+.floating-leaves, .corner-branches {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Enhanced corner branches with CSS art */
+.corner-branches::before, .corner-branches::after {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: 
+        radial-gradient(ellipse at center, var(--rich-brown) 2px, transparent 3px),
+        linear-gradient(45deg, var(--mossy-green) 0%, transparent 70%),
+        linear-gradient(-45deg, var(--deep-forest) 0%, transparent 60%);
+    background-size: 
+        8px 8px,
+        60px 60px,
+        40px 40px;
+    border-radius: 50% 0 50% 0;
+    animation: gentle-sway 8s infinite alternate ease-in-out;
+    opacity: 0.7;
+}
+
+.corner-branches::before { 
+    top: 20px; 
+    left: 20px; 
+    transform: rotate(-15deg);
+    animation-delay: 0s;
+}
+
+.corner-branches::after { 
+    bottom: 20px; 
+    right: 20px; 
+    transform: rotate(165deg);
+    animation-delay: 2s;
+}
+
+/* More pronounced gentle sway animation */
+@keyframes gentle-sway {
+    0% { transform: rotate(-15deg) translateY(0px); }
+    50% { transform: rotate(-12deg) translateY(-3px); }
+    100% { transform: rotate(-18deg) translateY(3px); }
+}
+
+.corner-branches::after {
+    animation-name: gentle-sway-reverse;
+}
+
+@keyframes gentle-sway-reverse {
+    0% { transform: rotate(165deg) translateY(0px); }
+    50% { transform: rotate(168deg) translateY(-3px); }
+    100% { transform: rotate(162deg) translateY(3px); }
+}
+
+/* Add subtle wood grain texture overlay */
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-image: url('wood-grain-subtle.png'); /* Add your wood grain image */
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: -1; /* Behind content but above background */
+}
+
+/* --- RESPONSIVE DESIGN (Initial Setup) --- */
+@media (max-width: 768px) {
+    h1 { font-size: var(--h1-mobile); }
+    section#hero h2 { font-size: 18px; } /* Hero subheading mobile */
+    h2 { font-size: var(--h2-mobile); }
+    h3 { font-size: var(--h3-mobile); }
+    p { font-size: var(--body-text-mobile); }
+    .caption-text { font-size: var(--caption-mobile); }
+
+    .section-container {
+        padding: 40px 20px;
+    }
+
+    #navbar {
+        padding: 0 20px;
+    }
+
+    .nav-menu {
+        display: none; /* Will be handled by JS for mobile menu */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: rgba(107, 142, 108, 0.95); /* Slightly more opaque for readability */
+        padding: 10px 0;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        margin: 10px 20px;
+        text-align: center;
+    }
+
+    .mobile-menu-icon {
+        display: block;
+    }
+
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 100px; /* More space for header + stacked content */
+    }
+
+    .hero-content {
+        flex: 0 0 auto; /* Reset flex basis */
+        padding-right: 0;
+        margin-bottom: 30px;
+        order: 2; /* Text below illustration */
+    }
+    
+    section#hero .hero-content h1, section#hero .hero-content h2 {
+        text-align: center;
+    }
+
+    .hero-illustration {
+        flex: 0 0 auto; /* Reset flex basis */
+        margin-bottom: 30px;
+        order: 1; /* Illustration above text */
+        max-width: 80%;
+    }
+
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-buttons .btn {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 80%; /* Make buttons more touch-friendly */
+    }
+
+    .cta-buttons .btn:last-child {
+        margin-bottom: 0;
+    }
+} 
+
+/* --- SECTION 2 - "MY ARTISTIC WORLDS" --- */
+#artistic-worlds {
+    background-color: #F1F6F1; /* Very light sage green */
+    position: relative; /* For pseudo-elements like curved dividers or borders */
+    padding-top: 80px; /* Extra padding to ensure content is below curved divider */
+}
+
+/* Placeholder for curved section divider - using a simple border for now */
+#artistic-worlds::before {
+    content: '';
+    position: absolute;
+    top: -2px; /* Overlap slightly with hero to hide straight edge */
+    left: 0;
+    width: 100%;
+    height: 50px; /* Height of the curve */
+    background-color: var(--pale-green); /* Match hero bottom color */
+    /* Using border-radius for a simple curve. Replace with SVG for more organic shapes. */
+    border-bottom-left-radius: 50% 20px; /* Asymmetric curve */
+    border-bottom-right-radius: 50% 20px; /* Asymmetric curve */
+    z-index: 1; /* Ensure it's above hero, but below artistic-worlds content */
+}
+
+#artistic-worlds .section-container {
+    position: relative; /* Ensure content is above the pseudo-element */
+    z-index: 2;
+}
+
+/* Hand-drawn border patterns - placeholder, use ::after or border-image */
+#artistic-worlds {
+    /* border: 5px solid transparent; */
+    /* border-image: url('hand-drawn-border.svg') 30 round; */ 
+}
+
+#artistic-worlds h2 {
+    margin-bottom: 60px;
+}
+
+.art-cards-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start; /* Align cards to top if descriptions have different lengths */
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.art-card {
+    background-color: var(--cream-white);
+    border: 3px solid var(--golden-accent);
+    border-radius: 15px 5px 15px 5px; /* Irregular hand-drawn corners */
+    padding: 25px;
+    width: calc(33.333% - 30px);
+    min-width: 280px;
+    text-align: center;
+    box-shadow: 8px 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    transform: rotate(-2deg);
+    position: relative;
+    /* Hand-drawn border effect with pseudo-elements */
+}
+
+.art-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 2px dashed rgba(212, 165, 116, 0.3);
+    border-radius: 18px 8px 18px 8px;
+    pointer-events: none;
+}
+
+.art-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+.art-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.art-card:nth-child(3) {
+    transform: rotate(-1deg);
+}
+
+.art-card:hover {
+    transform: translateY(-10px) rotate(1deg) scale(1.03);
+    box-shadow: 8px 8px 20px rgba(0,0,0,0.1);
+    /* Sparkles on hover - can be done with ::after an animation */
+}
+
+.art-card-visual {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--pale-green) 0%, #E0EDE0 100%);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: var(--mossy-green);
+    padding: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.visual-grid, .doodle-grid {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.visual-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.doodle-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.mini-art, .mini-doodle {
+    width: 35px;
+    height: 35px;
+    background-color: var(--cream-white);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.mini-doodle {
+    font-size: 14px;
+    width: 30px;
+    height: 30px;
+}
+
+.mini-art:hover, .mini-doodle:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.portfolio-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 200px;
+}
+
+.book-cover {
+    font-size: 40px;
+    margin-right: 5px;
+    transition: transform 0.3s ease;
+}
+
+.book-pages {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.page {
+    width: 20px;
+    height: 3px;
+    background-color: var(--cream-white);
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.art-card h3 {
+    color: var(--deep-forest);
+    font-family: var(--font-headlines); /* Playful serif (already set globally) */
+    margin-bottom: 10px;
+}
+
+.art-card p {
+    font-size: 15px; /* Slightly smaller for card descriptions */
+    color: var(--charcoal-green);
+    margin-bottom: 20px;
+    min-height: 60px; /* Ensure cards have similar height if text length varies */
+}
+
+.btn-tertiary {
+    background-color: var(--mossy-green);
+    color: var(--cream-white);
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+    display: inline-flex; /* for icon alignment */
+    align-items: center;
+}
+
+.btn-tertiary:hover {
+    background-color: var(--deep-forest);
+    transform: scale(1.05);
+}
+
+.btn-tertiary .heart-icon {
+    margin-left: 8px;
+    color: var(--soft-coral);
+}
+
+/* Specific hover effects for Card 2 (Cute Doodles) */
+.art-card:nth-child(2):hover .art-card-visual {
+    /* Add subtle animation to doodles here - e.g. a small wiggle, background change */
+    /* This might require individual elements within the visual or a GIF/SVG animation */
+}
+
+/* Specific hover effects for Card 3 (Portfolio) */
+.art-card#portfolio-card:hover .art-card-visual {
+    /* Portfolio "opens" slightly - can be a transform or image swap */
+}
+
+/* --- RESPONSIVE DESIGN (SECTION 2) --- */
+@media (max-width: 992px) { /* Tablet */
+    .art-card {
+        width: calc(50% - 20px); /* Two cards per row */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile */
+    #artistic-worlds::before {
+        height: 30px; /* Smaller curve on mobile */
+        border-bottom-left-radius: 100% 15px;
+        border-bottom-right-radius: 100% 15px;
+    }
+    #artistic-worlds {
+        padding-top: 50px;
+    }
+
+    .art-card {
+        width: 100%; /* Full width on mobile */
+        margin-bottom: 30px;
+        transform: rotate(0deg); /* No rotation on mobile for simplicity */
+    }
+    .art-card:nth-child(2) {
+        transform: rotate(0deg);
+    }
+    .art-card:hover {
+        transform: translateY(-5px) scale(1.02); /* Simpler hover on mobile */
+    }
+} 
+
+/* --- SECTION 3 - "RECENT MAGIC" (Latest Art Showcase) --- */
+#recent-magic {
+    background: linear-gradient(135deg, var(--sage-green) 0%, var(--deep-forest) 100%); /* Deeper, more intimate gradient */
+    color: var(--cream-white); /* Text color for this darker section */
+    position: relative;
+    padding-bottom: 80px; /* Extra padding at bottom */
+    overflow: hidden; /* Contain fireflies */
+}
+
+/* Featured Masterpieces Section */
+.featured-masterpieces {
+    text-align: center;
+    margin-bottom: 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(212, 165, 116, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-masterpieces::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(212, 165, 116, 0.1) 50%, transparent 70%);
+    animation: masterpiece-shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes masterpiece-shimmer {
+    0%, 100% { transform: translateX(-100%); opacity: 0; }
+    50% { transform: translateX(0); opacity: 1; }
+}
+
+.featured-masterpieces h3 {
+    font-family: var(--font-accent);
+    font-size: 28px;
+    color: var(--golden-accent);
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+}
+
+.featured-masterpieces p {
+    color: var(--warm-cream);
+    font-size: 16px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.masterpiece-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    justify-items: center;
+}
+
+.art-piece.masterpiece {
+    position: relative;
+    transform: scale(1.1);
+    border: 4px solid var(--golden-accent);
+    box-shadow: 
+        0 15px 40px rgba(0,0,0,0.4),
+        0 0 30px rgba(212, 165, 116, 0.3),
+        inset 0 0 20px rgba(212, 165, 116, 0.1);
+    background: linear-gradient(135deg, var(--rich-brown) 0%, #8B5A3C 100%);
+    overflow: visible;
+}
+
+.art-piece.masterpiece:hover {
+    transform: scale(1.15) rotate(0deg);
+    box-shadow: 
+        0 20px 50px rgba(0,0,0,0.5),
+        0 0 40px rgba(212, 165, 116, 0.5),
+        inset 0 0 30px rgba(212, 165, 116, 0.2);
+}
+
+.masterpiece-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--golden-accent) 0%, #D4A574 100%);
+    color: var(--rich-brown);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 10;
+    animation: badge-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes badge-glow {
+    0% { box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 10px rgba(212, 165, 116, 0.5); }
+    100% { box-shadow: 0 5px 15px rgba(0,0,0,0.3), 0 0 20px rgba(212, 165, 116, 0.8); }
+}
+
+.masterpiece-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, transparent 70%);
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: -1;
+    animation: masterpiece-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes masterpiece-glow-pulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
+}
+
+.art-piece.masterpiece .art-caption {
+    background-color: rgba(212, 165, 116, 0.9);
+    color: var(--rich-brown);
+    font-weight: 600;
+}
+
+.art-piece.masterpiece .art-caption .creation-date {
+    color: var(--charcoal-green);
+    font-weight: 500;
+}
+
+#recent-magic h2 {
+    font-family: var(--font-accent); /* Elegant script font */
+    color: var(--cream-white);
+    margin-bottom: 10px;
+    /* Small illustrations of art supplies - would be ::before/::after or inline SVGs */
+}
+
+#recent-magic .section-container > h2 + p { /* A subtitle if one exists */
+    text-align: center;
+    color: var(--pale-green);
+    font-size: 18px;
+    margin-bottom: 50px;
+}
+
+/* Decorative elements: fireflies, mushrooms, ferns - placeholders */
+/* Example for fireflies using pseudo-elements (needs animation) */
+/* #recent-magic::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: radial-gradient(circle, rgba(255,255,200,0.3) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: fireflies-glow 5s infinite alternate;
+    pointer-events: none;
+}
+@keyframes fireflies-glow { from { opacity: 0.3; } to { opacity: 0.7; } } */
+
+.art-masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    /* For a more pronounced masonry effect if items have different heights: 
+       align-items: start; 
+       grid-auto-rows: 20px; /* Smallest unit of row height */
+    /* Then individual items would need grid-row-end: span X; based on their content */
+}
+
+.art-piece {
+    background: linear-gradient(135deg, var(--rich-brown) 0%, #6B4423 100%);
+    padding: 20px;
+    border-radius: 8px 15px 8px 15px; /* Irregular wooden frame corners */
+    box-shadow: 
+        0 8px 25px rgba(0,0,0,0.3),
+        inset 0 0 0 3px rgba(139, 90, 60, 0.8),
+        inset 0 0 20px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+    transform: rotate(0deg);
+    /* Wood grain texture effect */
+}
+
+.art-piece::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,0.03) 2px,
+            rgba(0,0,0,0.03) 3px
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Randomize frame tilts - will be enhanced by JS */
+.art-piece:nth-child(odd) {
+    transform: rotate(-1deg);
+}
+
+.art-piece:nth-child(even) {
+    transform: rotate(1deg);
+}
+
+.art-piece:nth-child(3n) {
+    transform: rotate(-0.5deg);
+}
+
+/* .art-piece:nth-child(even) {
+    transform: rotate(-1deg);
+} */
+
+.art-piece img {
+    display: block;
+    width: 100%;
+    border-radius: 5px; /* Slightly rounded corners for the image inside frame */
+    transition: transform 0.4s ease;
+}
+
+.art-piece .art-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(45, 90, 61, 0.85); /* Deep forest green, semi-transparent */
+    color: var(--warm-cream);
+    padding: 10px;
+    font-size: var(--caption-desktop);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s ease, transform 0.3s ease 0.1s;
+}
+
+.art-piece .art-caption .creation-date {
+    display: block;
+    font-size: 0.8em;
+    opacity: 0.8;
+}
+
+.art-piece:hover {
+    transform: scale(1.03) rotate(0deg); /* Straighten on hover if tilted */
+    box-shadow: 0 0 25px var(--golden-accent), 0 8px 25px rgba(0,0,0,0.3); /* Frame glow + stronger shadow */
+}
+
+.art-piece:hover img {
+    transform: scale(1.1); /* Image zooms slightly */
+}
+
+.art-piece:hover .art-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tiny magical sparkles - placeholder, use ::after with animation */
+/* .art-piece::after {
+    content: '';
+    position: absolute;
+    top: -5px; left: -5px; right: -5px; bottom: -5px;
+    background-image: url('sparkles.gif'); 
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+.art-piece:hover::after {
+    opacity: 1;
+} */
+
+/* Different frame styles (example for variation) */
+/* .art-piece.frame-style-1 { border: 10px solid var(--rich-brown); padding: 5px; }
+.art-piece.frame-style-2 { border: 5px solid var(--golden-accent); padding: 10px; background-color: var(--mossy-green); } */
+
+/* --- RESPONSIVE DESIGN (SECTION 3) --- */
+@media (max-width: 768px) { /* Mobile */
+    .art-masonry-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    .art-piece {
+        transform: rotate(0deg) !important; /* No tilt on mobile */
+    }
+    .art-piece .art-caption {
+        font-size: var(--caption-mobile);
+    }
+    
+    /* Featured Masterpieces Mobile */
+    .featured-masterpieces {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .featured-masterpieces h3 {
+        font-size: 24px;
+    }
+    
+    .masterpiece-gallery {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .art-piece.masterpiece {
+        transform: scale(1.05);
+        max-width: 100%;
+    }
+    
+    .art-piece.masterpiece:hover {
+        transform: scale(1.08);
+    }
+    
+    .masterpiece-badge {
+        font-size: 11px;
+        padding: 6px 16px;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller Mobile */
+    .art-masonry-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+} 
+
+/* --- SECTION 4 - "COZY MERCH CORNER" --- */
+#merch-corner {
+    background-color: var(--warm-cream); /* Warm cream background */
+    position: relative;
+    padding-bottom: 60px;
+    /* Wooden shelf illustrations would be background images or pseudo-elements */
+    /* background-image: url('wooden-shelf-background.png'); */
+    /* background-repeat: no-repeat; */
+    /* background-position: bottom center; */
+}
+
+#merch-corner h2 {
+    color: var(--deep-forest);
+    margin-bottom: 50px;
+}
+
+.merch-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.merch-card {
+    background: linear-gradient(135deg, var(--cream-white) 0%, #F5F2EE 100%);
+    border: 3px dashed var(--rich-brown);
+    padding: 30px 20px;
+    border-radius: 15px 5px 25px 25px; /* More pronounced tag-like shape */
+    text-align: center;
+    box-shadow: 
+        5px 5px 15px rgba(0,0,0,0.1),
+        inset 0 0 10px rgba(139, 90, 60, 0.05);
+    position: relative;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.4s ease;
+    /* Add twine hole effect */
+}
+
+.merch-card::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: var(--warm-cream);
+    border: 2px solid var(--rich-brown);
+    border-radius: 50%;
+    box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+}
+
+.merch-card::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 15px;
+    background: linear-gradient(to bottom, var(--rich-brown) 0%, transparent 100%);
+    border-radius: 1px;
+}
+
+.merch-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+}
+
+.merch-card h4 {
+    font-family: var(--font-accent); /* Hand-lettered category names */
+    font-size: 26px;
+    color: var(--rich-brown);
+    margin-bottom: 15px;
+}
+
+/* Enhanced product previews */
+.merch-card .product-preview-placeholder {
+    height: 150px;
+    background: linear-gradient(135deg, var(--pale-green) 0%, #E0EDE0 100%);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    color: var(--mossy-green);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.merch-card:hover .product-preview-placeholder {
+    transform: scale(1.05);
+}
+
+.product-shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.merch-card:hover .product-shine {
+    transform: translateX(100%);
+}
+
+.print-frame {
+    font-size: 48px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+}
+
+.sticker-sheet {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 10px;
+}
+
+.sticker {
+    font-size: 20px;
+    background-color: var(--cream-white);
+    padding: 5px;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.sticker:hover {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.tshirt {
+    font-size: 48px;
+    position: relative;
+}
+
+.design-on-shirt {
+    position: absolute;
+    font-size: 16px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: gentle-glow 2s infinite alternate;
+}
+
+.plushie {
+    font-size: 48px;
+    animation: gentle-bounce 3s infinite ease-in-out;
+}
+
+.sparkle-effect {
+    position: absolute;
+    font-size: 12px;
+    top: 20%;
+    right: 30%;
+    animation: sparkle-twinkle 1.5s infinite;
+}
+
+@keyframes gentle-glow {
+    0% { text-shadow: 0 0 5px var(--golden-accent); }
+    100% { text-shadow: 0 0 15px var(--golden-accent); }
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes sparkle-twinkle {
+    0%, 100% { opacity: 0.5; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Enhanced badges */
+.merch-card .new-badge {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background: linear-gradient(135deg, var(--soft-coral) 0%, #E89B8F 100%);
+    color: var(--cream-white);
+    padding: 5px 12px;
+    border-radius: 15px 15px 15px 0;
+    font-size: 11px;
+    font-weight: bold;
+    opacity: 1;
+    transform: rotate(3deg);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    border: 2px solid var(--cream-white);
+}
+
+.merch-card .new-badge.popular {
+    background: linear-gradient(135deg, var(--golden-accent) 0%, #C49B5F 100%);
+    color: var(--rich-brown);
+    transform: rotate(-3deg);
+}
+
+.merch-card:hover .new-badge {
+    transform: rotate(0deg) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Price tag - placeholder for swinging animation */
+.merch-card .price-tag {
+    display: inline-block;
+    background-color: var(--golden-accent);
+    color: var(--rich-brown);
+    padding: 5px 10px;
+    border-radius: 15px 0 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    /* transform-origin: top center; */ /* For swinging animation */
+    /* animation: swing 1s ease-in-out infinite alternate; */ /* Placeholder */
+}
+
+/* @keyframes swing {
+    from { transform: rotate(5deg); }
+    to { transform: rotate(-5deg); }
+} */
+
+.featured-merch-carousel {
+    background-color: var(--pale-green); /* Light background for carousel area */
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    /* Illustrated wooden shelves would be background or pseudo-elements */
+    /* background-image: url('carousel-shelves.png'); */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.featured-merch-carousel h3 {
+    font-family: var(--font-headlines);
+    color: var(--deep-forest);
+    margin-bottom: 20px;
+}
+
+/* Enhanced featured carousel */
+.carousel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin: 20px 0;
+}
+
+.carousel-item.featured {
+    background: linear-gradient(135deg, var(--cream-white) 0%, #F5F2EE 100%);
+    border: 2px solid var(--golden-accent);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    text-align: center;
+}
+
+.carousel-item.featured:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.featured-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.featured-product .product-image {
+    font-size: 48px;
+    margin-bottom: 10px;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+    animation: gentle-bounce 3s infinite ease-in-out;
+}
+
+.featured-product h4 {
+    color: var(--deep-forest);
+    font-family: var(--font-headlines);
+    margin: 0 0 8px 0;
+    font-size: 18px;
+}
+
+.featured-product p {
+    color: var(--charcoal-green);
+    margin: 0 0 15px 0;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.featured-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--deep-forest);
+    background: linear-gradient(135deg, var(--golden-accent) 0%, #C49B5F 100%);
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: var(--rich-brown);
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.limited-badge, .save-badge, .custom-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+    transform: rotate(15deg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.limited-badge {
+    background: linear-gradient(135deg, #FF6B6B 0%, #E55555 100%);
+}
+
+.save-badge {
+    background: linear-gradient(135deg, #4ECDC4 0%, #3BB3AC 100%);
+}
+
+.custom-badge {
+    background: linear-gradient(135deg, var(--soft-coral) 0%, #E89B8F 100%);
+}
+
+/* --- RESPONSIVE DESIGN (SECTION 4) --- */
+@media (max-width: 768px) { /* Mobile */
+    .merch-categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    .merch-card h4 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller Mobile */
+    .merch-categories-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+}
+
+/* --- RESPONSIVE ENHANCEMENTS FOR NEW CONTENT --- */
+@media (max-width: 768px) { /* Mobile responsive for enhanced features */
+    .loader-art {
+        font-size: 36px;
+    }
+    
+    .loader-content p {
+        font-size: 20px;
+    }
+    
+    .carousel-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .featured-product .product-image {
+        font-size: 36px;
+    }
+    
+    .contact-options {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .contact-icon {
+        font-size: 36px;
+    }
+    
+    #contact h2 {
+        font-size: 28px;
+    }
+    
+    .contact-card {
+        padding: 25px 15px;
+    }
+}
+
+@media (max-width: 480px) { /* Smaller mobile adjustments */
+    .featured-product h4 {
+        font-size: 16px;
+    }
+    
+    .featured-price {
+        font-size: 18px;
+        padding: 6px 12px;
+    }
+    
+    .limited-badge, .save-badge, .custom-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+    }
+    
+    /* Guest Book Mobile */
+    .guest-book-form {
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    #guest-book h2 {
+        font-size: 24px;
+    }
+    
+    .guest-message {
+        padding: 15px;
+        margin-bottom: 15px;
+    }
+    
+    /* Sound Controls Mobile */
+    .sound-controls button {
+        padding: 10px 16px;
+        font-size: 12px;
+        min-width: 120px;
+    }
+    
+    /* Love Message Mobile */
+    .love-message {
+        max-width: 280px;
+        padding: 20px 25px;
+        font-size: 16px;
+        margin: 0 10px;
+    }
+    
+    /* Hidden Hearts Mobile */
+    .hidden-heart {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .hidden-heart:hover {
+        transform: scale(1.2);
+    }
+} 
+
+/* --- INTERACTIVE ELEMENTS & ANIMATIONS (CSS PART) --- */
+
+/* Cursor Effects (define classes, JS will apply them) */
+body.cursor-sparkle-trail {
+    /* cursor: url('sparkle-trail.cur'), auto; */ /* Requires .cur file */
+}
+.clickable-element-brush {
+    /* cursor: url('paintbrush-cursor.cur'), pointer; */ /* Requires .cur file */
+}
+.art-piece-magnify {
+    /* cursor: url('magnifying-glass.cur'), zoom-in; */ /* Requires .cur file */
+}
+
+/* Scroll-Triggered Animations (elements to animate will get this class via JS) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Ambient Animations */
+
+/* Floating Leaves (Example - needs HTML elements or JS to create leaves) */
+@keyframes floatLeaf {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+    50% { transform: translateY(-20px) translateX(15px) rotate(15deg); opacity: 0.8; }
+    100% { transform: translateY(0) translateX(30px) rotate(-5deg); opacity: 0; }
+}
+.floating-leaf {
+    position: absolute;
+    /* background-image: url('leaf.svg'); */
+    width: 20px; height: 20px;
+    background-color: var(--mossy-green); /* Placeholder leaf */
+    border-radius: 50% 0;
+    opacity: 0;
+    animation: floatLeaf 10s infinite ease-in-out;
+    pointer-events: none;
+}
+
+/* Hero section specific floating leaves */
+.hero-floating-leaf {
+    position: absolute;
+    width: 16px; 
+    height: 16px;
+    background-color: var(--sage-green); 
+    border-radius: 50% 0;
+    opacity: 0;
+    animation: heroLeafFloat 15s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 1; /* Behind hero content but visible */
+}
+
+@keyframes heroLeafFloat {
+    0% { 
+        transform: translateY(0) translateX(0) rotate(0deg); 
+        opacity: 0.6; 
+    }
+    25% { 
+        transform: translateY(-30px) translateX(20px) rotate(90deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateY(-15px) translateX(-10px) rotate(180deg); 
+        opacity: 0.5; 
+    }
+    75% { 
+        transform: translateY(-40px) translateX(15px) rotate(270deg); 
+        opacity: 0.7; 
+    }
+    100% { 
+        transform: translateY(0) translateX(0) rotate(360deg); 
+        opacity: 0.3; 
+    }
+}
+/* JS would be needed to randomly place and time these */
+
+/* Fireflies in Recent Magic section (revisiting the placeholder) */
+@keyframes fireflies-twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 0.8; transform: scale(1); }
+}
+
+.firefly {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #FFFFAA; /* Light yellow for fireflies */
+    border-radius: 50%;
+    box-shadow: 0 0 5px #FFFFAA, 0 0 10px #FFFFAA;
+    animation: fireflies-twinkle 3s infinite alternate;
+    pointer-events: none;
+    /* JS will be used to randomly position these within #recent-magic */
+}
+
+/* Gentle swaying of tree branches and decorative elements (example) */
+@keyframes gentle-sway {
+    0% { transform: rotate(-1deg); }
+    100% { transform: rotate(1deg); }
+}
+.swaying-element {
+    /* Apply to elements like .corner-branches in Hero if they are actual images/SVGs */
+    /* animation: gentle-sway 6s infinite alternate ease-in-out; */
+}
+
+/* Easter Eggs - Hidden Clickable Mushroom (Styling for the mushroom itself) */
+.hidden-mushroom {
+    /* background-image: url('mushroom.svg'); */
+    width: 30px; height: 30px;
+    background-color: var(--soft-coral); /* Placeholder */
+    border-radius: 50% 50% 10px 10px;
+    position: absolute; /* JS will position these */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.hidden-mushroom:hover {
+    transform: scale(1.1);
+}
+
+/* Sparkle Burst (created by JS on mushroom click) */
+@keyframes sparkle-burst-anim {
+    0% { transform: scale(0); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+.sparkle-burst {
+    position: absolute; /* Positioned by JS at click location */
+    width: 10px;
+    height: 10px;
+    background-color: var(--golden-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle-burst-anim 0.5s ease-out forwards;
+    box-shadow: 0 0 5px var(--golden-accent), 0 0 10px var(--golden-accent);
+}
+
+/* --- ENHANCED CONTACT SECTION --- */
+#contact {
+    background: linear-gradient(135deg, var(--pale-green) 0%, #E0EDE0 100%);
+    padding: 80px 0;
+    text-align: center;
+    position: relative;
+}
+
+#contact h2 {
+    color: var(--deep-forest);
+    margin-bottom: 20px;
+    font-family: var(--font-accent);
+    font-size: 32px;
+}
+
+#contact > .section-container > p {
+    color: var(--charcoal-green);
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 18px;
+}
+
+.contact-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, var(--cream-white) 0%, #F5F2EE 100%);
+    border: 2px solid var(--golden-accent);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.contact-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.contact-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    animation: gentle-bounce 3s infinite ease-in-out;
+}
+
+.contact-card h4 {
+    color: var(--deep-forest);
+    font-family: var(--font-headlines);
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.contact-card p {
+    color: var(--charcoal-green);
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.contact-card small {
+    color: var(--mossy-green);
+    font-size: 14px;
+    font-style: italic;
+}
+
+.contact-note {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+    border: 1px dashed var(--golden-accent);
+}
+
+.contact-note p {
+    color: var(--rich-brown);
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Basic form styling (if you add a form) */
+/* #contact form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+#contact input[type="text"], #contact input[type="email"], #contact textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--mossy-green);
+    font-family: var(--font-body);
+}
+#contact button[type="submit"] {
+    background-color: var(--mossy-green);
+    color: var(--cream-white);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#contact button[type="submit"]:hover {
+    background-color: var(--deep-forest);
+} */
+
+/* --- GUEST BOOK SECTION --- */
+#guest-book {
+    background: linear-gradient(135deg, var(--warm-cream) 0%, var(--pale-green) 100%);
+    position: relative;
+}
+
+#guest-book h2 {
+    font-family: var(--font-accent);
+    font-size: 32px;
+    color: var(--deep-forest);
+    margin-bottom: 15px;
+}
+
+.guest-book-form {
+    max-width: 500px;
+    margin: 0 auto 40px auto;
+    background: linear-gradient(135deg, var(--cream-white) 0%, #F5F2EE 100%);
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid var(--golden-accent);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.guest-book-form input, .guest-book-form textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 2px solid var(--mossy-green);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--cream-white);
+}
+
+.guest-book-form input:focus, .guest-book-form textarea:focus {
+    outline: none;
+    border-color: var(--golden-accent);
+    box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+}
+
+.guest-book-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.messages-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+}
+
+.guest-message {
+    background: linear-gradient(135deg, var(--cream-white) 0%, #F5F2EE 100%);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid var(--golden-accent);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    animation: message-appear 0.5s ease-out;
+}
+
+.message-content {
+    font-size: 16px;
+    color: var(--charcoal-green);
+    line-height: 1.5;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
+.message-author {
+    font-size: 14px;
+    color: var(--mossy-green);
+    text-align: right;
+    font-weight: 500;
+}
+
+@keyframes message-appear {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- ROMANTIC EASTER EGGS --- */
+.hidden-heart {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    z-index: 100;
+    animation: heart-pulse 2s infinite ease-in-out;
+}
+
+.hidden-heart img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    transition: filter 0.3s ease;
+}
+
+.hidden-heart:hover {
+    opacity: 1;
+    transform: scale(1.3);
+}
+
+.hidden-heart:hover img {
+    filter: drop-shadow(0 4px 8px rgba(255,182,193,0.6)) brightness(1.1);
+}
+
+@keyframes heart-pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(0deg); }
+    75% { transform: scale(1.05) rotate(2deg); }
+}
+
+.love-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, var(--soft-coral) 0%, #FF69B4 100%);
+    color: white;
+    padding: 25px 35px;
+    border-radius: 20px;
+    font-family: var(--font-accent);
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+    animation: love-message-appear 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    max-width: 300px;
+    border: 3px solid rgba(255,255,255,0.3);
+}
+
+.love-message::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 10px solid transparent;
+    border-bottom-color: var(--soft-coral);
+}
+
+@keyframes love-message-appear {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* --- ENHANCED FOOTER --- */
+#main-footer {
+    background: linear-gradient(135deg, var(--charcoal-green) 0%, #2A3E2A 100%);
+    color: var(--pale-green);
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 14px;
+    position: relative;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#main-footer p {
+    color: var(--pale-green);
+    margin: 0 0 20px 0;
+}
+
+.sound-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.sound-controls button {
+    background: linear-gradient(135deg, var(--golden-accent) 0%, #B8945A 100%);
+    color: var(--rich-brown);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: var(--font-navigation);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    min-width: 140px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sound-controls button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.sound-controls button:hover::before {
+    left: 100%;
+}
+
+.sound-controls button:hover {
+    background: linear-gradient(135deg, var(--rich-brown) 0%, #5A3E28 100%);
+    color: var(--golden-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.sound-controls button.active {
+    background: linear-gradient(135deg, var(--deep-forest) 0%, var(--mossy-green) 100%);
+    color: var(--warm-cream);
+    box-shadow: 0 0 20px rgba(95, 122, 94, 0.6);
+    animation: cozy-glow 2s infinite alternate ease-in-out;
+}
+
+@keyframes cozy-glow {
+    0% { box-shadow: 0 0 20px rgba(95, 122, 94, 0.6); }
+    100% { box-shadow: 0 0 25px rgba(95, 122, 94, 0.8); }
+}
+
+/* --- TOAST NOTIFICATION SYSTEM --- */
+.toast-container {
+    position: fixed;
+    top: 0;
+    left: 20px;
+    z-index: 10001;
+    pointer-events: none; /* Allow clicks through container */
+}
+
+.toast {
+    position: absolute;
+    left: 0;
+    max-width: 400px;
+    padding: 15px 45px 15px 20px; /* Extra padding on right for dismiss button */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    backdrop-filter: blur(12px);
+    border: 2px solid rgba(255,255,255,0.3);
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    pointer-events: auto; /* Re-enable clicks on toasts */
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.toast-hearts {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.95) 0%, rgba(255, 105, 180, 0.95) 100%);
+    color: white;
+}
+
+.toast-audio {
+    background: linear-gradient(135deg, rgba(31, 58, 43, 0.95) 0%, rgba(90, 122, 94, 0.95) 100%);
+    color: white;
+}
+
+.toast-success {
+    background: linear-gradient(135deg, rgba(242, 181, 167, 0.95) 0%, rgba(255, 105, 180, 0.95) 100%);
+    color: white;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.dismissing {
+    opacity: 0;
+    transform: translateX(-100%) scale(0.8);
+    transition: all 0.3s ease-in;
+}
+
+.toast-content {
+    font-family: var(--font-accent);
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: left;
+    margin-right: 10px; /* Space for dismiss button */
+}
+
+.toast-content strong {
+    font-size: 16px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.toast-dismiss {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    line-height: 1;
+}
+
+.toast-dismiss:hover {
+    background: rgba(255,255,255,0.3);
+    transform: scale(1.1);
+}
+
+.toast-dismiss:active {
+    transform: scale(0.95);
+}
+
+/* Smooth position transitions when toasts move */
+.toast {
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), top 0.3s ease;
+}
+
+/* Mobile adjustments for toasts */
+@media (max-width: 480px) {
+    .toast-container {
+        left: 15px;
+        right: 15px;
+        top: 15px;
+    }
+    
+    .toast {
+        max-width: none;
+        width: calc(100vw - 30px);
+        padding: 12px 40px 12px 16px;
+        transform: translateY(-100%);
+    }
+    
+    .toast.show {
+        transform: translateY(0);
+    }
+    
+    .toast.dismissing {
+        transform: translateY(-100%) scale(0.9);
+    }
+    
+    .toast-content {
+        font-size: 13px;
+    }
+    
+    .toast-content strong {
+        font-size: 14px;
+    }
+    
+    .toast-dismiss {
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        top: 6px;
+        right: 6px;
+    }
+}
+
+/* --- Page Transition (Soft fade with floating leaf overlay - example) --- */
+/* This would typically involve JS to add/remove a class on body during page load/unload */
+/* .page-transition-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: var(--warm-cream);
+    opacity: 1;
+    z-index: 9998; 
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+}
+.page-transition-overlay.hidden {
+    opacity: 0;
+} */
+/* Floating leaf for transition - more complex, needs JS to manage */
+
+/* Additional animations for enhanced interactivity */
+@keyframes sparkle-fade {
+    0% { 
+        opacity: 1; 
+        transform: scale(0.1) rotate(0deg); 
+    }
+    50% { 
+        opacity: 0.8; 
+        transform: scale(1) rotate(180deg); 
+    }
+    100% { 
+        opacity: 0; 
+        transform: scale(0.1) rotate(360deg); 
+    }
+}
+
+@keyframes doodle-wiggle {
+    0% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-2px) rotate(-1deg); }
+    75% { transform: translateX(2px) rotate(1deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
+/* Enhanced price tag swing animation */
+@keyframes price-tag-swing {
+    0% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}
+
+.merch-card:hover .price-tag {
+    animation: price-tag-swing 1.5s ease-in-out infinite;
+    transform-origin: top center;
+}
+
+/* Enhance firefly movement */
+@keyframes firefly-float {
+    0% { 
+        transform: translateX(0) translateY(0); 
+        opacity: 0.3; 
+    }
+    25% { 
+        transform: translateX(10px) translateY(-5px); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: translateX(-5px) translateY(-10px); 
+        opacity: 1; 
+    }
+    75% { 
+        transform: translateX(-10px) translateY(5px); 
+        opacity: 0.6; 
+    }
+    100% { 
+        transform: translateX(0) translateY(0); 
+        opacity: 0.3; 
+    }
+}
+
+.firefly {
+    animation: firefly-float 4s infinite ease-in-out, fireflies-twinkle 3s infinite alternate;
+}
+
+/* Final overall adjustments */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- LIGHTBOX/MODAL FOR ARTWORK --- */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 10002;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-overlay.show {
+    opacity: 1;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#lightbox-image {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-overlay.show #lightbox-image {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 36px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.lightbox-caption {
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+}
+
+.lightbox-caption h3 {
+    font-family: var(--font-accent);
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--golden-accent);
+}
+
+.lightbox-caption p {
+    font-size: 16px;
+    color: var(--warm-cream);
+    opacity: 0.9;
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    pointer-events: none;
+}
+
+.lightbox-nav button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 48px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+}
+
+.lightbox-nav button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.lightbox-nav button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Click hint for art pieces */
+.art-piece {
+    cursor: zoom-in;
+}
+
+/* Also make hero illustration clickable */
+.hero-illustration img {
+    cursor: zoom-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-illustration img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.art-piece::after {
+    content: '🔍';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.art-piece:hover::after {
+    opacity: 0.8;
+    transform: scale(1);
+    animation: magnify-pulse 1s ease-in-out infinite;
+}
+
+@keyframes magnify-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Mobile adjustments for lightbox */
+@media (max-width: 768px) {
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    
+    .lightbox-nav button {
+        font-size: 36px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .lightbox-caption h3 {
+        font-size: 20px;
+    }
+    
+    .lightbox-caption p {
+        font-size: 14px;
+    }
+    
+    #lightbox-image {
+        max-height: 70vh;
+    }
+} 
